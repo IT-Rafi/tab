@@ -1,0 +1,81 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com">
+<meta name="copyright" content="智能社 - zhinengshe.com">
+<title>智能社 - www.zhinengshe.com</title>
+<style>
+.btn.active { background:yellow; }
+
+.tab div { display:none; width:180px; height:100px; line-height:100px; font-size:50px; text-align:center; border:1px solid red; }
+.tab div.active { display:block; }
+</style>
+<script>
+window.onload=function (){
+	tab('tab');
+	
+	function tab(sClassName)
+	{
+		var aParent=document.getElementsByClassName(sClassName);
+		
+		for (var i=0; i<aParent.length; i++)
+		{
+			var sEv=aParent[i].getAttribute('sev');
+		
+			_tab(aParent[i], sEv);
+		}	
+	}
+	
+	function _tab(obj, sEv)
+	{
+		var aBtn=obj.getElementsByClassName('btn');
+		var aDiv=obj.getElementsByTagName('div');
+		
+		for (var i=0; i<aBtn.length; i++)
+		{
+			aBtn[i].index=i;
+			aBtn[i][sEv]=function (){
+				for (var i=0; i<aBtn.length; i++)
+				{
+					aBtn[i].className='btn';
+					aDiv[i].className='';
+				}
+				
+				this.className='active btn';
+				aDiv[this.index].className='active';
+			};
+		}
+	}
+};
+</script>
+</head>
+
+<body>
+	<div class="tab" sev="onclick">
+		<input type="button" value="新闻1" class="active btn" />
+		<input type="button" value="电影1" class="btn" />
+		<input type="button" value="体育1" class="btn" />
+		<div class="active">新闻1</div>
+		<div>电影1</div>
+		<div>体育1</div>
+	</div>
+	
+	<div class="tab" sev="onmouseover">
+		<a href="javascript:;"class="active btn">新闻</a>
+		<a href="javascript:;"class="btn">电影</a>
+		<div class="active">新闻2</div>
+		<div>电影2</div>
+	</div>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
